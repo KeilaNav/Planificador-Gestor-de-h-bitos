@@ -401,16 +401,13 @@ let habitos = JSON.parse(localStorage.getItem("habitos")) || {};
 
 agregarHabito.addEventListener("click", () => {
   const nombre = nuevoHabito.value.trim();
+  nuevoHabito.value = "";
 
   if (nombre && !habitos[nombre]) {
     habitos[nombre] = [];
     guardarHabitos();
     renderHabitos();
   }
-
-  // Limpiar y enfocar el input
-  nuevoHabito.value = "";
-  nuevoHabito.focus();
 });
 
 function guardarHabitos() {
