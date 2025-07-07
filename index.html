@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Planificador y Gestor de Hábitos</title>
+  <link rel="stylesheet" href="proyectthree.css" />
+  <link rel="icon" href="icono.png" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="contenedor">
+  <header>
+    <h1>🌙 Bienvenid@, <span id="nombreUsuario"></span></h1>
+  </header>
+
+  <!-- Registro y Login -->
+  <main class="container" role="main">
+    <section id="registroSection" aria-hidden="false">
+      <h2>Crear perfil</h2>
+      <form id="registroForm" novalidate>
+        <input type="text" id="nombre" placeholder="Tu nombre completo" required minlength="3" /><br>
+        <input type="text" id="usuario" placeholder="Nombre de usuario" required minlength="3" /><br>
+        <input type="password" id="contrasena" placeholder="Contraseña" required minlength="6" /><br>
+        <button type="submit">Guardar Perfil</button>
+      </form>
+      <p class="mensaje" id="mensajeRegistro" role="alert"></p>
+      <p>¿Ya tenés perfil? <button type="button" id="btnMostrarLogin" class="link-btn">Iniciar sesión</button></p>
+    </section>
+
+    <section id="loginSection" aria-hidden="true" style="display:none;">
+      <h2>Iniciar sesión</h2>
+      <form id="loginForm" novalidate>
+        <input type="text" id="loginUsuario" placeholder="Usuario" required minlength="3" />
+        <input type="password" id="loginContrasena" placeholder="Contraseña" required minlength="6" />
+        <button type="submit">Ingresar</button>
+      </form>
+      <p class="mensaje" id="mensajeLogin" role="alert"></p>
+      <p>¿No tenés cuenta? <button type="button" id="btnMostrarRegistro" class="link-btn">Crear perfil</button></p>
+    </section>
+  </main>
+
+  <!-- Perfil -->
+  <section id="perfilSection" class="oculto">
+    <h2>👤 Mi Perfil</h2>
+    <img id="imagenPerfil" class="imagen-perfil" src="" alt="Imagen de perfil" />
+    <p><strong>Nombre:</strong> <span id="perfilNombre"></span></p>
+    <p><strong>Edad:</strong> <span id="perfilEdad">-</span></p>
+    <p><strong>Peso:</strong> <span id="perfilPeso">-</span></p>
+    <p><strong>Altura:</strong> <span id="perfilAltura">-</span></p>
+    <p><strong>Hábitos favoritos:</strong> <span id="perfilHabitos">-</span></p>
+
+    <button id="btnEditarPerfil">Editar perfil</button>
+    <button id="cerrarSesion">Cerrar sesión</button>
+
+    <form id="formEditarPerfil" class="oculto">
+      <label for="inputEdad">Edad:</label>
+      <input type="number" id="inputEdad" placeholder="Tu edad" /><br>
+
+      <label for="inputPeso">Peso (kg):</label>
+      <input type="number" id="inputPeso" placeholder="Tu peso" /><br>
+
+      <label for="inputAltura">Altura (cm):</label>
+      <input type="number" id="inputAltura" placeholder="Tu altura" /><br>
+
+      <label for="inputHabitos">Hábito favorito:</label>
+      <input type="text" id="inputHabitos" placeholder="Ej: leer, meditar, caminar" /><br>
+
+      <label for="inputImagen">Imagen de perfil:</label>
+      <input type="file" id="inputImagen" accept="image/*" />
+      <button type="submit">Guardar</button>
+    </form>
+  </section>
+
+  <!-- Planificador diario -->
+  <section id="planificadorSection" class="oculto">
+    <h2>🗓 Planificador Diario</h2>
+    <div id="formTarea">
+      <label for="horaTarea">Hora:</label>
+      <select id="horaTarea"></select>
+      <input type="text" id="descripcionTarea" placeholder="Escribí tu tarea..." />
+      <button id="agregarTarea">Agregar tarea</button>
+    </div>
+    <ul id="listaTareas"></ul>
+  </section>
+
+  <!-- Objetivos -->
+  <section id="objetivosSection" class="oculto">
+    <h2>🎯 Objetivos</h2>
+    <input type="text" id="nuevoObjetivo" placeholder="Nuevo objetivo..." />
+    <button id="agregarObjetivo">Agregar objetivo</button>
+    <ul id="listaObjetivos"></ul>
+  </section>
+
+  <!-- Notas -->
+  <section id="notasSection" class="oculto">
+    <h2>📝 Mis Notas</h2>
+    <input type="text" id="nuevaNota" placeholder="Escribí tus notas aquí..." />
+    <button id="guardarNota">Guardar Nota</button>
+    <ul id="listaNotas"></ul>
+  </section>
+
+  <!-- Gestor de hábitos -->
+  <section id="habitosSection" class="oculto">
+    <h2>🌿 Mis Hábitos</h2>
+    <input type="text" id="nuevoHabito" placeholder="Nuevo hábito..." />
+    <button id="agregarHabito">Agregar hábito</button>
+    <ul id="listaHabitos"></ul>
+    <canvas id="graficoHabitos"></canvas>
+  </section>
+
+  <!-- Ilustraciones decorativas -->
+  <footer>
+    <img src="imagenplanificador.webp" alt="planificador" class="decoracion" />
+    <img src="gestordehabitos.webp" alt="gestor" class="decoracion" />
+  </footer>
+</div>
+
+<!-- Scripts -->
+<script>
+  const selectHora = document.getElementById("horaTarea");
+  for (let i = 6; i <= 22; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = `${i}:00`;
+    selectHora.appendChild(option);
+  }
+</script>
+<script src="proyectthree.js"></script>
+</body>
+</html>
