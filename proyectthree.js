@@ -412,6 +412,7 @@ agregarHabito.addEventListener("click", () => {
 
 function guardarHabitos() {
   localStorage.setItem("habitos", JSON.stringify(habitos));
+  nuevoHabito.value = "";
 }
 
 function renderHabitos() {
